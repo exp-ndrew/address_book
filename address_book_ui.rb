@@ -28,19 +28,7 @@ def add_contact
 
   puts "\n\nContact #{contact_name} added!\n\n"
 
-  puts "\n\nEnter #{contact_name}'s Address:"
-  contact_address = gets.chomp
-  c.add_address(contact_address)
-
-  puts "\n\nEnter #{contact_name}'s Phone Number:\n\n"
-  contact_phone = gets.chomp
-  c.add_phone(contact_phone)
-
-  puts "\n\nEnter #{contact_name}'s Email:\n\n"
-  contact_email = gets.chomp
-  c.add_email(contact_email)
-
-  c.save
+  c.add_information
 end
 
 def list_contacts
@@ -65,13 +53,68 @@ end
 
 def select_contact number
   puts "\n\n"
-  puts @current_contact.name
-  puts "Address: #{@current_contact.address}"
-  puts "Phone: #{@current_contact.phone}"
-  puts "Email: #{@current_contact.email}"
-  puts "\n\nType 'e' to edit this contact.\n\n"
+  @current_contact.show
+  puts "\n\nPress 'e' to edit this contact."
+  puts "Press 'l' to return to the list.\n\n"
+  main_choice = gets.chomp
+  if main_choice == 'e'
+    edit_contact
+  elsif main_choice == 'l'
+    list_contacts
+  else
+    main_menu
+  end
 
 end
 
+def edit_contact
+  puts "\n\n"
+  puts "Press 'a' to edit addresses for #{@current_contact.name}"
+  puts "Press 'p' to edit phone numbers for #{@current_contact.name}"
+  puts "Press 'e' to edit emails for #{@current_contact.name}"
+  puts "Press 'l' to return to the list"
+  main_choice = gets.chomp
+  if main_choice == 'a'
+    edit_address
+  elsif main_choice == 'p'
+    edit_phone
+  elsif main_choice == 'e'
+    edit_email
+  elsif main_choice == 'l'
+    list_contacts
+  else
+    puts "That wasn't a valid input"
+  end
+end
+
+def edit_address
+  puts "\n\n"
+  puts @current_contact.name
+  puts @current_contact.address
+  puts "\n\n"
+  puts "Press 'a' to add another address."
+  puts "Press 'e' to edit an existing address"
+
+end
+
+def edit_phone
+  puts "\n\n"
+  puts @current_contact.name
+  puts @current_contact.phone
+  puts "\n\n"
+  puts "Press 'a' to add another phone number."
+  puts "Press 'e' to edit an existing phone number."
+
+end
+
+def edit_email
+  puts "\n\n"
+  puts @current_contact.name
+  puts @current_contact.email
+  puts "\n\n"
+  puts "Press 'a' to add another email."
+  puts "Press 'e' to edit an existing email."
+
+end
 
 main_menu

@@ -8,6 +8,22 @@ class Contact
     @phone = []
   end
 
+  def add_information
+    puts "\n\nEnter #{@name}'s Address:"
+    contact_address = gets.chomp
+    self.add_address(contact_address)
+
+    puts "\n\nEnter #{@name}'s Phone Number:\n\n"
+    contact_phone = gets.chomp
+    self.add_phone(contact_phone)
+
+    puts "\n\nEnter #{@name}'s Email:\n\n"
+    contact_email = gets.chomp
+    self.add_email(contact_email)
+
+    self.save
+  end
+
   def name
     @name
   end
@@ -38,6 +54,13 @@ class Contact
 
   def Contact.all
     @@all_contacts
+  end
+
+  def show
+    puts @name
+    puts "Address: #{@address}"
+    puts "Phone: #{@phone}"
+    puts "Email: #{@email}"
   end
 
   def save
