@@ -24,6 +24,17 @@ class Contact
     self.save
   end
 
+  def show
+    puts @name
+    puts "Address: #{@address}"
+    puts "Phone: #{@phone}"
+    puts "Email: #{@email}"
+  end
+
+  def Contact.all
+    @@all_contacts
+  end
+
   def name
     @name
   end
@@ -50,17 +61,6 @@ class Contact
 
   def add_phone (phone)
     @phone << phone
-  end
-
-  def Contact.all
-    @@all_contacts
-  end
-
-  def show
-    puts @name
-    puts "Address: #{@address}"
-    puts "Phone: #{@phone}"
-    puts "Email: #{@email}"
   end
 
   def save
